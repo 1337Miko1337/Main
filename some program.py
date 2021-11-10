@@ -67,6 +67,12 @@ def road(r, c, k=2):
             k -= 1
     return a
 
-b = BFS(1, 1, 9, 1)
-a = road(9, 1, b)
-print(a)
+
+r = int(input('Введіть номер рядка "входу": '))
+col = int(input('Введіть номер стовпця "входу": '))
+r_finish = int(input('Введіть номер рядка "виходу": '))
+c_finish = int(input('введіть номер стовпця "виходу": '))
+b = BFS(r, col, r_finish, c_finish)
+a = road(r_finish, c_finish, b)
+a.reverse()
+print('Найкоротший шлях, до заданої точки: ', a)
