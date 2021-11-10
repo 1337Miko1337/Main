@@ -8,4 +8,32 @@ matr = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
         [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]]
-print(matr)
+
+
+rmax = len(matr)
+cmax = len(matr[0])
+
+
+def BFS(r, c):  # r, c: координати початку обходу
+    que = []
+    que.append([r, c])
+    while len(que) > 0:
+        tmp = que.pop(0)
+        r = tmp[0]
+        c = tmp[1]
+        print('Координати:', r, c)
+        if ((c + 1) < cmax) and (matr[r][c + 1] == 1):
+            que.append([r, c + 1])
+            matr[r][c + 1] = 0  # якщо можна йти вправо, то йдемо
+        if ((r + 1) < rmax) and (matr[r + 1][c] == 1):
+            que.append([r + 1, c])
+            matr[r + 1][c] = 0  # якщо можна йти вниз, то йдемо
+        if ((c - 1) >= 0) and (matr[r][c - 1] == 1):
+            que.append([r, c - 1])
+            matr[r][c - 1] = 0  # якщо можна йти вліво, то йдемо
+        if ((r - 1) >= 0) and (matr[r - 1][c] == 1):
+            que.append([r - 1, c])
+            matr[r - 1][c] = 0  # якщо можна йти вгору, то йдемо
+
+
+BFS(0, 1)
