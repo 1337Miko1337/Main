@@ -40,5 +40,38 @@ def BFS(r, c, r_finish, c_finish, k=1):
     return a
 
 
-a=BFS(1, 1, 9, 1)
-print(matr)
+def road(r, c, k=2):
+    count = 0
+    a = []
+    while k > 2:
+        if ((c + 1) < cmax) and (matr[r][c + 1] == k - 1):
+            a.append([r, c + 1])
+            count += 1
+            c += 1
+            k -= 1
+        if ((r + 1) < rmax) and (matr[r + 1][c] == k - 1):
+            a.append([r + 1, c])
+            count += 1
+            r += 1
+            k -= 1
+        if ((c - 1) >= 0) and (matr[r][c - 1] == k - 1):
+            a.append([r, c - 1])
+            c = c - 1
+            k -= 1
+            count += 1
+        if ((r - 1) >= 0) and (matr[r - 1][c] == k - 1):
+            a.append([r - 1, c])
+            count += 1
+            r -= 1
+            k -= 1
+    return a
+
+
+r = int(input('Введіть номер рядка "входу": '))
+col = int(input('Введіть номер стовпця "входу": '))
+r_finish = int(input('Введіть номер рядка "виходу": '))
+c_finish = int(input('введіть номер стовпця "виходу": '))
+b = BFS(r, col, r_finish, c_finish)
+a = road(r_finish, c_finish, b)
+a.reverse()
+print('Найкоротший шлях, до заданої точки: ', a)
