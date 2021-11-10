@@ -14,14 +14,15 @@ rmax = len(matr)
 cmax = len(matr[0])
 
 
-def BFS(r, c):  # r, c: координати початку обходу
+def BFS(r, c):
     que = []
+    matr[r][c] = 0
     que.append([r, c])
     while len(que) > 0:
         tmp = que.pop(0)
         r = tmp[0]
         c = tmp[1]
-        print('Координати:', r, c)
+        print('Координати: ', r, c)
         if ((c + 1) < cmax) and (matr[r][c + 1] == 1):
             que.append([r, c + 1])
             matr[r][c + 1] = 0  # якщо можна йти вправо, то йдемо
