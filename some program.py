@@ -8,9 +8,6 @@ rmax = len(matr)
 cmax = len(matr[0])
 f.close()
 
-rmax = len(matr)
-cmax = len(matr[0])
-
 
 def BFS(r, c, r_finish, c_finish, k=1):
     que = []
@@ -74,4 +71,8 @@ c_finish = int(input('введіть номер стовпця "виходу": '
 b = BFS(r, col, r_finish, c_finish)
 a = road(r_finish, c_finish, b)
 a.reverse()
-print('Найкоротший шлях, до заданої точки: ', a)
+print('Найкоротший шлях:')
+for i in range(len(a)):
+    print(a[i], end='')
+    if i != len(a) - 1:
+        print(end='-')
