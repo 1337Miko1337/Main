@@ -9,19 +9,24 @@ cmax = len(matr[0])
 f.close()
 
 
-def DFS(r, c):
-    matr[r][c] = 0
+def DFS(r, c, r_finish, c_finish):
     print( r, '-', c)
-    if ((c + 1) < cmax) and (matr[r][c + 1] == 1):
-        DFS(r, c + 1)
-    if ((r + 1) < rmax) and (matr[r + 1][c] == 1):
-        DFS(r + 1, c)
-    if ((c - 1) >= 0) and (matr[r][c - 1] == 1):
-        DFS(r, c - 1)
-    if ((r - 1) >= 0) and (matr[r - 1][c] == 1):
-        DFS(r - 1, c)
+    print(r != r_finish)
+    print(c != c_finish)
+    if (r != r_finish) or (c != c_finish):
+        if ((c + 1) < cmax) and (matr[r][c + 1] == 1):
+            DFS(r, c + 1, r_finish, c_finish)
+        if ((r + 1) < rmax) and (matr[r + 1][c] == 1):
+            DFS(r + 1, c, r_finish, c_finish)
+        if ((c - 1) >= 0) and (matr[r][c - 1] == 1):
+            DFS(r, c - 1, c_finish)
+        if ((r - 1) >= 0) and (matr[r - 1][c] == 1):
+            DFS(r - 1, c, r_finish)
+    elif (r == r_finish) and (c == c_finish):
+        exit()
+        return
 
 
 r = int(input('Введіть номер рядка "входу": '))
 col = int(input('Введіть номер стовпця "входу": '))
-a=DFS(r,col)
+a=DFS(r,col,9,1)
